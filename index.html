@@ -12,11 +12,17 @@
     <div class="form">
       <label for="produto">Produto:</label>
       <input type="text" id="produto" required>
+      
       <label for="quantidade">Quantidade:</label>
       <input type="number" id="quantidade" required>
+      
       <label for="preco">Preço:</label>
-      <input type="number" id="preco" required>
-      <button id="cadastrar">Cadastrar</button>
+      <input type="number" id="preco" step="0.01" required>
+      
+      
+      <div class="cad"> 
+        <button id="cadastrar">Cadastrar</button>
+      </div>
     </div>
     <div class="nota-fiscal" id="nota-fiscal">
       <h2>Nota Fiscal</h2>

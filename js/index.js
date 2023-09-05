@@ -10,7 +10,8 @@ let total = 0;
 cadastrarButton.addEventListener("click", () => {
   const produto = produtoInput.value;
   const quantidade = parseInt(quantidadeInput.value);
-  const preco = parseFloat(precoInput.value);
+  const precoInputValue = precoInput.value.replace(',', '.'); 
+  const preco = parseFloat(precoInputValue);
 
   if (produto && quantidade && preco) {
     const valorTotal = quantidade * preco;
