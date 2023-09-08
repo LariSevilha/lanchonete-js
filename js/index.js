@@ -1,32 +1,25 @@
-const cadastrarButton = document.getElementById("cadastrar");
-const produtoInput = document.getElementById("produto");
-const quantidadeInput = document.getElementById("quantidade");
-const precoInput = document.getElementById("preco");
-const itensList = document.getElementById("itens");
-const totalParaPagar = document.getElementById("total");
+function calcular() {
+  const produto = document.getElementById("prod").value;
+  const quantidade = parseInt(document.getElementById("qtd").value);
+  const valor = parseFloat(document.getElementById("valor").value);
 
-let total = 0;
+  if (produto && !isNaN(quantidade) && !isNaN(valor)) {
+      const subtotal = quantidade * valor;
+      const notaFiscalList = document.getElementById("itens");  
 
-cadastrarButton.addEventListener("click", () => {
-  const produto = produtoInput.value;
-  const quantidade = parseInt(quantidadeInput.value);
-  const precoInputValue = precoInput.value.replace(',', '.'); 
-  const preco = parseFloat(precoInputValue);
+      const listItem = document.createElement("li");
+      listItem.textContent = `${produto} - Quantidade: ${quantidade} - Valor: R$ ${valor.toFixed(2)} - Subtotal: R$ ${subtotal.toFixed(2)}`;
+      notaFiscalList.appendChild(listItem);
 
-  if (produto && quantidade && preco) {
-    const valorTotal = quantidade * preco;
-    total += valorTotal;
+      const totalElement = document.getElementById("total");
+      const totalAtual = parseFloat(totalElement.textContent || "0");
+      const novoTotal = totalAtual + subtotal;
+      totalElement.textContent = novoTotal.toFixed(2);
 
-    const item = document.createElement("li");
-    item.innerText = `${produto} - ${quantidade} unidades por R$ ${preco.toFixed(
-      2
-    )} cada = R$ ${valorTotal.toFixed(2)}`;
-    itensList.appendChild(item);
-
-    totalParaPagar.innerText = `Total a pagar: R$ ${total.toFixed(2)}`;
-
-    produtoInput.value = "";
-    quantidadeInput.value = "";
-    precoInput.value = "";
+      document.getElementById("prod").value = "";
+      document.getElementById("qtd").value = "";
+      document.getElementById("valor").value = "";
+  } else {
+      alert("Por favor, preencha todos os campos corretamente.");
   }
-});
+}
